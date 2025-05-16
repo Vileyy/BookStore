@@ -1,10 +1,23 @@
-import { View, Text } from "react-native";
 import React from "react";
-import { LoginScreen } from "./src/components/Login";
-import { AppNavigation } from "./src/navigation/AppNavigation";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import BookListLayout from "./src/BookListLayout";
+import BookDetailLayout from "./src/BookDetailLayout";
+
+const Stack = createStackNavigator();
 
 const App = () => {
-  return <AppNavigation />;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="BookList"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="BookList" component={BookListLayout} />
+        <Stack.Screen name="BookDetail" component={BookDetailLayout} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
 
 export default App;
